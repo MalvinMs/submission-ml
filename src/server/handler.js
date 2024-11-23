@@ -30,46 +30,47 @@ async function postPredictHandler(request, h) {
   }).code(201);
 }
 
-async function predictHistories(request, h) {
-  const { Firestore } = require("@google-cloud/firestore");
-  const db = new Firestore({
-    projectId: "submissionmlgc-malvin",
-  });
+// async function predictHistories(request, h) {
+//   const { Firestore } = require("@google-cloud/firestore");
+//   const db = new Firestore({
+//     projectId: "submissionmlgc-malvin",
 
-  try {
-    const predictCollection = db.collection("predictions");
-    const snapshot = await predictCollection.get();
+//   });
 
-    if (snapshot.empty) {
-      return h.response({
-        status: "success",
-        data: [],
-      });
-    }
+//   try {
+//     const predictCollection = db.collection("predictions");
+//     const snapshot = await predictCollection.get();
 
-    const result = [];
-    snapshot.forEach((doc) => {
-      result.push({
-        id: doc.id,
-        history: {
-          result: doc.data().result,
-          createdAt: doc.data().createdAt,
-          suggestion: doc.data().suggestion,
-        },
-      });
-    });
+//     if (snapshot.empty) {
+//       return h.response({
+//         status: "success",
+//         data: [],
+//       });
+//     }
 
-    return h.response({
-      status: "success",
-      data: result,
-    });
-  } catch (error) {
-    console.error("Error fetching prediction histories:", error);
-    return h.response({
-      status: "fail",
-      message: "Failed to fetch prediction histories",
-    }).code(500);
-  }
-}
+//     const result = [];
+//     snapshot.forEach((doc) => {
+//       result.push({
+//         id: doc.id,
+//         history: {
+//           result: doc.data().result,
+//           createdAt: doc.data().createdAt,
+//           suggestion: doc.data().suggestion,
+//         },
+//       });
+//     });
 
-module.exports = { postPredictHandler, predictHistories };
+//     return h.response({
+//       status: "success",
+//       data: result,
+//     });
+//   } catch (error) {
+//     console.error("Error fetching prediction histories:", error);
+//     return h.response({
+//       status: "fail",
+//       message: "Failed to fetch prediction histories",
+//     }).code(500);
+//   }
+// }
+
+module.exports = { postPredictHandler };

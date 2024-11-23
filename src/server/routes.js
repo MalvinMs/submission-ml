@@ -13,11 +13,11 @@ const routes = [
       },
     },
   },
-  {
-    path: '/predict/histories',
-    method: 'GET',
-    handler: predictHistories
-  }
+  // {
+  //   path: '/predict/histories',
+  //   method: 'GET',
+  //   handler: predictHistories
+  // }
 ];
 
 module.exports = routes;
