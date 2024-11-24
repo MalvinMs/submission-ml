@@ -24,10 +24,10 @@ async function predictClassification(model, image) {
 
     if (label === "Cancer") {
       suggestion =
-        "Bersabar, jangan panik. Segera periksakan diri ke dokter untuk mendapatkan penanganan lebih lanjut.";
+        "Segera periksakan diri ke dokter!";
     } else {
       suggestion =
-        "Tetap jaga kesehatan dan pola hidup sehat. Jangan lupa untuk rutin periksa kesehatan.";
+        "Penyakit kanker tidak terdeteksi.";
     }
 
     return {
